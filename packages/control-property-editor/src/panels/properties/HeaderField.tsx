@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import React, { useCallback, useState } from 'react';
 
 import { TextField, Label, Stack } from '@fluentui/react';
-import { UIIconButton, UiIcons, UITooltip, UITooltipUtils, UIDirectionalHint } from '@sap-ux/ui-components';
+import { UIIconButton, UiIcons, UITooltip, UITooltipUtils, UIDirectionalHint, getCalloutStyle } from '@sap-ux/ui-components';
 
 import './Properties.scss';
 import { defaultFontSize, sectionHeaderFontSize } from './constants';
@@ -33,6 +33,7 @@ export function HeaderField(headerFieldProps: Readonly<HeaderFieldProps>): React
     const [isCopyMessageBoxVisible, setIsCopyMessageBoxVisible] = useState(false);
     const documentationContent = documentation && (
         <PropertyDocumentation
+            title={documentation.title}
             defaultValue={documentation.defaultValue}
             description={documentation.description}
             propertyName={documentation.propertyName}
@@ -56,7 +57,20 @@ export function HeaderField(headerFieldProps: Readonly<HeaderFieldProps>): React
         <Stack horizontal={false} verticalAlign={'space-between'} style={{ marginBottom: 4 }}>
             <UITooltip
                 hidden={hidden}
-                calloutProps={{ gapSpace: 5 }}
+                calloutProps={{
+                    gapSpace: 5,
+                    styles: getCalloutStyle({
+                        styles: {
+                            root: {
+                                padding: 'none'
+                            },
+                            calloutMain: {
+                                padding: 'none'
+                            }
+                        }
+                    })
+                }}
+                maxWidth={400}
                 delay={2}
                 directionalHint={UIDirectionalHint.leftCenter}
                 tooltipProps={UITooltipUtils.renderContent(documentationContent ?? '')}>

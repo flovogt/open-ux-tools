@@ -1,4 +1,5 @@
 export interface PropertiesInfo {
+    title: string,
     defaultValue: string;
     description: string;
     propertyName: string;

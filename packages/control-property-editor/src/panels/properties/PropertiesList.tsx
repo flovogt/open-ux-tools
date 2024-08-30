@@ -42,11 +42,13 @@ export function PropertiesList(): ReactElement {
     )[0].value as boolean;
     const [filterValue, setFilterValue] = useState('');
     const doc = {
+        title: 'Control ID',
         defaultValue: '-',
         description: 'The unique identifier within a page, either configured or automatically generated.',
         propertyName: 'id',
         type: 'sap.ui.core.ID',
-        propertyType: 'ID'
+        propertyType: 'ID',
+        
     };
     if (!control) {
         // Nothing selected, show message
@@ -124,7 +126,7 @@ export function PropertiesList(): ReactElement {
     return (
         <>
             <div className="property-content">
-                <HeaderField label={t('CONTROL_ID_LABEL')} value={id} documentation={doc} hidden={false} />
+                <HeaderField label={t('CONTROL_ID_LABEL')} value={id} documentation={doc} hidden={false}  />
                 <HeaderField label={t('CONTROL_TYPE_LABEL')} value={type} />
             </div>
             <Separator
